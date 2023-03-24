@@ -27,7 +27,7 @@ spring:
       jdbc-url: ${spring.datasource.url}
       maximum-pool-size: 40
       username: postgres
-      password: zxcdfg270301
+      password: 
 
 jwt:
   secret: jwtstoreservice
