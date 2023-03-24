@@ -1,0 +1,41 @@
+server:
+  port: 8081
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  application:
+    name: auth-service
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        default_schema: store_service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/store_db
+    hikari:
+      driver-class-name: org.postgresql.Driver
+      jdbc-url: ${spring.datasource.url}
+      maximum-pool-size: 40
+      username: postgres
+      password: zxcdfg270301
+
+jwt:
+  secret: jwtstoreservice
+  expired: 3600000
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

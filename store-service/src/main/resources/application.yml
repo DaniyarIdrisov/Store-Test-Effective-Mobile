@@ -1,0 +1,52 @@
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  application:
+    name: store-service
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        default_schema: store_service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/store_db
+    hikari:
+      driver-class-name: org.postgresql.Driver
+      jdbc-url: ${spring.datasource.url}
+      maximum-pool-size: 40
+      username: postgres
+      password: zxcdfg270301
+
+jwt:
+  secret: jwtstoreservice
+  expired: 3600000
+
+minio:
+  url: https://play.min.io
+  bucket: store-service
+  access-key: Q3AM3UQ867SPQQA43P2F
+  secret-key: zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG
+
+schedule:
+  update-period: 30000
+
+commission: 5
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
